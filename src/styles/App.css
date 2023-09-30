@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'Bangers';
+  src: url('./../assets/fonts/Bangers.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ComicNeue';
+  font-weight: normal;
+  src: url('./../assets/fonts/ComicNeue-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ComicNeue';
+  font-weight: bold;
+  src: url('./../assets/fonts/ComicNeue-Bold.ttf') format('truetype');
+}
+
+
+#root {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: 'Bangers';
+  font-weight: bold;
+}
+
+
+h2, h3 {
+  font-family: 'ComicNeue';
+  font-weight: bold;
+}
+
+header, main, footer {
+  margin: 0 60px;
+}
+
+p {
+  font-family: 'ComicNeue';
+  font-weight: normal;
+  font-size: 24px;
+}
+
+@media (max-width: 1024px) {
+  header, main, footer {
+    margin: 0 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  header, main, footer {
+    margin: 0 10px;
+  }
+}

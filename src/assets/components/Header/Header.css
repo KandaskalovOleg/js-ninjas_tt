@@ -1,0 +1,22 @@
+.navLink {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #FE0000;
+  color: white;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 48px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    margin: 5px 0;
+    font-size: 36px;
+  }
+}

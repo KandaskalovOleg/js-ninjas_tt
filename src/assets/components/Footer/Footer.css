@@ -1,0 +1,16 @@
+.footer {
+  margin-top: 34px;
+}
+
+.footerBlock {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #FE0000;
+  color: white;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+}
