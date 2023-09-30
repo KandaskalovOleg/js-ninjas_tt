@@ -15,6 +15,9 @@
   src: url('./../assets/fonts/ComicNeue-Bold.ttf') format('truetype');
 }
 
+body {
+  background-color: #F3B440;
+}
 
 #root {
   max-width: 1440px;

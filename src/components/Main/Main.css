@@ -1,0 +1,45 @@
+.parallaxContainer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.parallax {
+  position: fixed;
+  bottom: -5;
+  left: 0;
+  width: 110%;
+  height: 100%;
+  z-index: -1;
+  background-image: url('./../../assets/images/bg-main.jpg');
+  background-size: cover; 
+  background-position: right;
+}
+
+.scroll {
+  position: fixed; 
+  top: 91px; 
+  right: 2%;
+  width: 75px;
+  height: 75px;
+  background-image: url('./../../assets/images/scroll.png');
+  border-radius: 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -1;
+  transform-origin: center;
+}
+
+p {
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .parallax {
+    left: 10px;
+  }
+
+  .parallaxScroll {
+    top: 61px; 
+  }
+}

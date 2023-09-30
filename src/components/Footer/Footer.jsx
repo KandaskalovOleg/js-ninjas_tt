@@ -1,5 +1,5 @@
 import './Footer.css';
-import GitHubSvg from './../../logo/github.svg';
+import GitHubSvg from './../../assets/logo/github.svg';
 
 function Footer() {
 

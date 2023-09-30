@@ -27,7 +27,7 @@ function Header() {
       style={{ marginBottom: `${headerMargin}px` }}
     >
       <a href="#" className='navLink'>
-        <h1 className='logo'>Superhero</h1>
+        <h1 className='logo'>Superheros</h1>
       </a>
     </header>
   )
