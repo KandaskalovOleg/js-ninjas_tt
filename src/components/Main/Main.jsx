@@ -11,7 +11,11 @@ export const Main = () => {
       const x = e.clientX / window.innerWidth;
       const y = e.clientY / window.innerHeight;
 
-      parallax.style.transform = `translate(-${x * 50}px, -${y * 100}px)`;
+      if (window.innerWidth > 768) {
+        parallax.style.transform = `translate(-${x * 50}px, -${y * 100}px)`;
+      } else {
+        parallax.style.transform = 'none';
+      }
     };
 
     parallaxContainer.addEventListener('mousemove', handleMouseMove);

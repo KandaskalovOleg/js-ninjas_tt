@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Slider } from './Slider';
 import { config } from '../../../env/env';
 import { ChangeHeroForm } from './ChangeHeroForm';
+import { Loader } from '../Loader/Loader';
 
 export const SuperheroDetails = () => {
   const { id } = useParams();
@@ -30,7 +31,6 @@ export const SuperheroDetails = () => {
           setSuperheroData(await response.json());
           setIsLoading(false);
           setIsChangeForm(false);
-          console.log(isChangeFrom);
         })
         .catch((error) => {
           setIsLoading(false);
@@ -40,7 +40,9 @@ export const SuperheroDetails = () => {
   }, [id, isChangeFrom]);
 
   return isLoading ? (
-    <div className='loader'>Loading...</div>
+    <div className='loader loaderDetails'>
+      <Loader />
+    </div>
   ) : (
     <div className='superhero'>
       <h2 className='nickName'>
@@ -64,6 +66,7 @@ export const SuperheroDetails = () => {
             {isModalOpen && (
               <ChangeHeroForm 
                 superheroData={superheroData}
+                setSuperheroData={setSuperheroData}
                 closeModal={closeModal} 
                 isModalOpen={isModalOpen}
                 setIsChangeForm={setIsChangeForm}

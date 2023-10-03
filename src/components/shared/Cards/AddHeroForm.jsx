@@ -3,9 +3,11 @@
 import './AddHeroForm.css';
 import { config } from '../../../env/env';
 import { useEffect, useState } from 'react';
+import { Loader } from '../Loader/Loader';
 
 export const AddHeroForm = ({ closeModal, isModalOpen, setIsCreate }) => {
   const [modalClass, setModalClass] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     nickname: '',
@@ -92,7 +94,10 @@ export const AddHeroForm = ({ closeModal, isModalOpen, setIsCreate }) => {
       isSuperpowersWordLengthValid &&
       isCatchPhraseWordLengthValid
     ) {
+
+
       try {
+        setIsLoading(true);
         const formDataToSend = new FormData();
 
         for (const key in formData) {
@@ -121,8 +126,9 @@ export const AddHeroForm = ({ closeModal, isModalOpen, setIsCreate }) => {
           });
           setSuccessMessage('Герой успішно створений.');
           setErrorMessage('');
-          setIsCreate(true);
           closeModal();
+          setIsCreate(true);
+          setIsLoading(false);
           setErrors({
             nickname: '',
             real_name: '',
@@ -177,71 +183,79 @@ export const AddHeroForm = ({ closeModal, isModalOpen, setIsCreate }) => {
   }, [isModalOpen]);
 
   return (
-    <div className='modal-backdrop'>
-      <div className={`modal ${modalClass}`}>
-        <form className='addHeroForm' onSubmit={handleAddHero}>
-          <div className='button-container'>
-            <button className='closeButton' onClick={closeModal}>
-              &#10006;
-            </button>
+    <>
+      <div className='modal-backdrop'>
+        {isLoading ? (
+        <div className="loader">
+          <Loader />
+        </div>
+      ) : (
+          <div className={`modal ${modalClass}`}>
+            <form className='addHeroForm' onSubmit={handleAddHero}>
+              <div className='button-container'>
+                <button className='closeButton' onClick={closeModal}>
+                  &#10006;
+                </button>
+              </div>
+              <input
+                type='text'
+                className='text'
+                name='nickname'
+                placeholder='Nickname'
+                value={formData.nickname}
+                onChange={handleChange}
+              />
+              <span className='error'>{errors.nickname}</span>
+              <input
+                type='text'
+                className='text'
+                name='real_name'
+                placeholder='Real Name'
+                value={formData.real_name}
+                onChange={handleChange}
+              />
+              <span className='error'>{errors.real_name}</span>
+              <textarea
+                className='textarea'
+                name='origin_description'
+                id='origin_description'
+                placeholder='Origin Description'
+                value={formData.origin_description}
+                onChange={handleChange}
+              />
+              <span className='error'>{errors.origin_description}</span>
+              <textarea
+                className='textarea'
+                name='superpowers'
+                id='superpowers'
+                placeholder='Superpowers'
+                value={formData.superpowers}
+                onChange={handleChange}
+              />
+              <span className='error'>{errors.superpowers}</span>
+              <input
+                type='text'
+                className='text'
+                name='catch_phrase'
+                placeholder='Catch Phrase'
+                value={formData.catch_phrase}
+                onChange={handleChange}
+              />
+              <span className='error'>{errors.catch_phrase}</span>
+              <input
+                type='file'
+                name='images'
+                className='images'
+                accept='image/*'
+                multiple
+                onChange={handleImageChange}
+              />
+              <span className='error'>{errors.images}</span>
+              <button type='submit'>Add new hero</button>
+            </form>
           </div>
-          <input
-            type='text'
-            className='text'
-            name='nickname'
-            placeholder='Nickname'
-            value={formData.nickname}
-            onChange={handleChange}
-          />
-          <span className='error'>{errors.nickname}</span>
-          <input
-            type='text'
-            className='text'
-            name='real_name'
-            placeholder='Real Name'
-            value={formData.real_name}
-            onChange={handleChange}
-          />
-          <span className='error'>{errors.real_name}</span>
-          <textarea
-            className='textarea'
-            name='origin_description'
-            id='origin_description'
-            placeholder='Origin Description'
-            value={formData.origin_description}
-            onChange={handleChange}
-          />
-          <span className='error'>{errors.origin_description}</span>
-          <textarea
-            className='textarea'
-            name='superpowers'
-            id='superpowers'
-            placeholder='Superpowers'
-            value={formData.superpowers}
-            onChange={handleChange}
-          />
-          <span className='error'>{errors.superpowers}</span>
-          <input
-            type='text'
-            className='text'
-            name='catch_phrase'
-            placeholder='Catch Phrase'
-            value={formData.catch_phrase}
-            onChange={handleChange}
-          />
-          <span className='error'>{errors.catch_phrase}</span>
-          <input
-            type='file'
-            name='images'
-            className='images'
-            accept='image/*'
-            multiple
-            onChange={handleImageChange}
-          />
-          <span className='error'>{errors.images}</span>
-          <button type='submit'>Add new hero</button>
-        </form>
+        )}
       </div>
-    </div>
+    </>
   );
 };

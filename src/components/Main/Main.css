@@ -50,6 +50,7 @@ p {
 @media (max-width: 768px) {
   .parallax {
     left: 10px;
+    z-index: -1;
   }
 
   .parallaxScroll {

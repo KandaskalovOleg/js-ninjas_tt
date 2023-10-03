@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { config } from '../../../env/env';
 import './ChangeHeroForm.css';
 
-export const ChangeHeroForm = ({ superheroData, isModalOpen, closeModal, setIsChangeForm }) => {
+export const ChangeHeroForm = ({ superheroData, isModalOpen, closeModal, setIsChangeForm, setSuperheroData }) => {
   const [modalClass, setModalClass] = useState('');
   const [formData, setFormData] = useState({
     real_name: '',
@@ -68,6 +68,8 @@ export const ChangeHeroForm = ({ superheroData, isModalOpen, closeModal, setIsCh
       Object.values(newErrors).every((error) => error === '') &&
       Object.values(wordValidationErrors).every((error) => error === '')
     ) {
+      closeModal();
+      setIsChangeForm(true);
       try {
         const response = await fetch(`${config.apiUrl}superheroes/update/${superheroData._id}`, {
           method: 'PATCH',
@@ -78,8 +80,10 @@ export const ChangeHeroForm = ({ superheroData, isModalOpen, closeModal, setIsCh
         });
   
         if (response.ok) {
-          closeModal();
-          setIsChangeForm(true);
+          setSuperheroData({
+            ...superheroData,
+            ...formData,
+        });
         } else {
           console.error('Помилка при оновленні героя');
         }

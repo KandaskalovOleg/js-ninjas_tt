@@ -8,8 +8,8 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { config } from '../../../env/env';
 
-
 export const Slider = ({ images }) => {
+
   function replaceSpacesWithPercent20(inputString) {
     return inputString.replace(/ /g, '%20');
   }
@@ -25,7 +25,7 @@ export const Slider = ({ images }) => {
     },
   };
 
-  return images && (
+  return (
     <div className='slider'>
       <div className='sliderWrapper'>
         <Swiper
