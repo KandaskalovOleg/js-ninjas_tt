@@ -2,6 +2,7 @@
   position: relative;
   overflow: hidden;
   width: 100%;
+  height: 75vh;
 }
 
 .parallax {
@@ -32,6 +33,18 @@
 
 p {
   color: white;
+}
+
+@media (max-width: 1429px) {
+  .parallaxContainer {
+    height: 100%;
+  }
+}
+
+@media (max-height: 1080px) {
+  .parallaxContainer {
+    height: 100%;
+  }
 }
 
 @media (max-width: 768px) {

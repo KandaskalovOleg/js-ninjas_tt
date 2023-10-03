@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import './Header.css';
+import { Link } from 'react-router-dom';
 
-function Header() {
+export const Header = () => {
   const [headerMargin, setHeaderMargin] = useState();
 
   useEffect(() => {
@@ -26,11 +27,9 @@ function Header() {
       className='header' 
       style={{ marginBottom: `${headerMargin}px` }}
     >
-      <a href="#" className='navLink'>
-        <h1 className='logo'>Superheros</h1>
-      </a>
+      <Link to='/' className='navLink'>
+        <h1 className='logo'>Superheroes</h1>
+      </Link>
     </header>
-  )
-}
-
-export default Header;
+  );
+};

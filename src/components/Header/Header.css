@@ -3,9 +3,10 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #FE0000;
+  background-color: #B21300;
+  cursor: pointer;
   color: white;
-  z-index: 1000;
+  z-index: 999;
 }
 
 .logo {

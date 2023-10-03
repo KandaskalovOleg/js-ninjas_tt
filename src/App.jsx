@@ -1,17 +1,15 @@
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
-import Main from './components/Main/Main';
+import { Header } from './components/Header/Header';
+import { Main } from './components/Main/Main';
+import { Footer } from './components/Footer/Footer';
 import './styles/App.css';
 
-function App() {
+export const App = () => {
 
   return (
     <>
-      <Header/>
+      <Header />
       <Main />
       <Footer />
     </>
-  )
-}
-
-export default App
+  );
+};

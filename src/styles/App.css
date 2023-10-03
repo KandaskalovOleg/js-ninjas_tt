@@ -4,15 +4,15 @@
 }
 
 @font-face {
-  font-family: 'ComicNeue';
+  font-family: 'Bentonsans';
   font-weight: normal;
-  src: url('./../assets/fonts/ComicNeue-Regular.ttf') format('truetype');
+  src: url('./../assets/fonts/bentonsans-regular.otf') format('truetype');
 }
 
 @font-face {
-  font-family: 'ComicNeue';
+  font-family: 'Bentonsans';
   font-weight: bold;
-  src: url('./../assets/fonts/ComicNeue-Bold.ttf') format('truetype');
+  src: url('./../assets/fonts/bentonsans-bold.otf') format('opentype');
 }
 
 body {
@@ -30,17 +30,17 @@ h1 {
 }
 
 
-h2, h3 {
-  font-family: 'ComicNeue';
+h2, h3, h4 {
+  font-family: 'Bentonsans';
   font-weight: bold;
 }
 
 header, main, footer {
-  margin: 0 60px;
+  margin: 0 30px;
 }
 
-p {
-  font-family: 'ComicNeue';
+p, textarea, input, span, button, li, a {
+  font-family: 'Bentonsans';
   font-weight: normal;
   font-size: 24px;
 }

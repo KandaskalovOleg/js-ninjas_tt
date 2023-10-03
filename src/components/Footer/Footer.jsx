@@ -1,7 +1,7 @@
 import './Footer.css';
 import GitHubSvg from './../../assets/logo/github.svg';
 
-function Footer() {
+export const Footer = () => {
 
   return (
     <footer className='footer'>
@@ -11,7 +11,5 @@ function Footer() {
         </a>
       </div>
     </footer>
-  )
-}
-
-export default Footer;
+  );
+};

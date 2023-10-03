@@ -1,0 +1,75 @@
+.cardBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  border: 2px solid white;
+  border-radius: 10px;
+  margin: 10px;
+  height: 400px;
+  background-color: #f3b440;
+  cursor: pointer;
+  transition: box-shadow 0.3s
+}
+
+.cardBlock:hover {
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.7);
+}
+
+.imgWrapper {
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  width: 230px;
+  height: 320px;
+  margin: 10px;
+}
+
+
+.image {
+  border-radius: 10px;
+  
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s, width 0.3s;
+}
+
+.cardBlock:hover .image {
+  transform: translate(-50%, -40%) scale(1.1);
+  width: 120%;
+}
+
+.title {
+  font-size: 22px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  color: black;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background-color: transparent;
+  border: 1px solid white;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 5px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.deleteButton:hover {
+  color: black;
+  background-color: white;
+}
