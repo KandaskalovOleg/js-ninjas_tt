@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import './SuperheroDetails.css';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -11,7 +12,11 @@ export const SuperheroDetails = () => {
   const [superheroData, setSuperheroData] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true); 
+  const [isImageLoading, setIsImageLoading] = useState(false);
   const [isChangeFrom, setIsChangeForm] = useState(true);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [formData, setFormData] = useState({ image: null });
+  const [errorMsg, setErrorMsg] = useState('');
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -24,22 +29,62 @@ export const SuperheroDetails = () => {
   };
 
   useEffect(() => {
-    if (isChangeFrom) {
+    if (isChangeFrom || isDeleting) {
       setIsLoading(true);
       fetch(`${config.apiUrl}superheroes/get-one/${id}`)
         .then(async (response) => {
           setSuperheroData(await response.json());
           setIsLoading(false);
           setIsChangeForm(false);
+          setErrorMsg('');
         })
         .catch((error) => {
           setIsLoading(false);
           console.error('Error fetching superhero details:', error);
         });
     }
-  }, [id, isChangeFrom]);
+  }, [id, isChangeFrom, isDeleting]);
 
-  return isLoading ? (
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    setErrorMsg('Attached.');
+
+    setFormData({ ...formData, image: file });
+  };
+  
+  const handleSubmitImage = async (e) => {
+    e.preventDefault();
+  
+    if (superheroData.images.length >= 4) {
+      setErrorMsg('Cant contain more than 4 images.');
+      return;
+    }
+  
+    try {
+      setIsImageLoading(true);
+      const formDataToSend = new FormData();
+      formDataToSend.append('image', formData.image);
+  
+      const response = await fetch(`${config.apiUrl}superheroes/create-image/${superheroData._id}`, {
+        method: 'POST',
+        body: formDataToSend,
+      });
+  
+      if (response.ok) {
+        const updatedSuperhero = await fetch(`${config.apiUrl}superheroes/get-one/${superheroData._id}`)
+          .then(async (response) => response.json());
+  
+        setSuperheroData(updatedSuperhero);
+        setFormData({ ...formData, image: null });
+      }
+    } finally {
+      setErrorMsg('');
+      setIsImageLoading(false);
+    }
+  };
+
+  return (isLoading || isImageLoading)? (
     <div className='loader loaderDetails'>
       <Loader />
     </div>
@@ -54,7 +99,38 @@ export const SuperheroDetails = () => {
         </span>
       </Link>
       <div className='superheroContent'>
-        <Slider images={superheroData.images}/>
+        <div>
+          <Slider 
+            images={superheroData.images} 
+            id={superheroData._id} 
+            setIsDeleting={setIsDeleting}
+          />
+          <div className='addWrapper'>
+            <form className='addImageForm' onSubmit={handleSubmitImage}>
+              <input
+                type='file'
+                id='fileInput'
+                name='images'
+                className='fileInput'
+                accept='*image'
+                onChange={handleImageChange}
+              />
+              <div className='inputBlock'>
+                <label htmlFor='fileInput' className='customFileInput'>
+                  Add image
+                </label>
+                <span className='errorImg'>{errorMsg}</span>
+              </div>
+              <button 
+                className='updateButton' 
+                type='submit' 
+                disabled={!formData.image}
+              >
+                Upload
+              </button>
+            </form>
+          </div>
+        </div>
         <div className='aboutBlock'>
           <div className='editBlock'>
             <h3 className='realName'>

@@ -14,16 +14,21 @@ export const Card = ({ superhero, onDeleteClick }) => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const loadImage = () => {
-      const image = new Image();
-      image.src = `${config.apiUrl}${images?.length > 0 ? images[0] : ''}`;
-      image.onload = () => {
-        setIsLoading(false);
-      };
-    };
 
-    loadImage();
+  useEffect(() => {
+    if (images.length > 0) {
+      const loadImage = () => {
+        const image = new Image();
+        image.src = `${config.apiUrl}${images?.length > 0 ? images[0] : ''}`;
+        image.onload = () => {
+          setIsLoading(false);
+        };
+      };
+
+      loadImage();
+    } else {
+      setIsLoading(false);
+    }
   }, [images]);
 
   const handleDeleteClick = (e) => {

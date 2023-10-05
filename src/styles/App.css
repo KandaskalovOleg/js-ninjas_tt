@@ -39,7 +39,7 @@ header, main, footer {
   margin: 0 30px;
 }
 
-p, textarea, input, span, button, li, a {
+p, textarea, input, label, span, button, li, a {
   font-family: 'Bentonsans';
   font-weight: normal;
   font-size: 24px;

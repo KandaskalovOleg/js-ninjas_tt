@@ -59,3 +59,24 @@
   color: #fff;
   background: none !important;
 }
+
+.deleteImageButton {
+  position: absolute;
+  top: 10px;
+  background-color: white;
+  border: 1px solid black;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 5px;
+  color: black;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.deleteImageButton:hover {
+  color: white;
+  background-color: black;
+}
