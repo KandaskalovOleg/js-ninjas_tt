@@ -1,5 +1,7 @@
 # React + Vite
 
+[DEMO]([https://mate-academy.github.io/react_goods-selector](https://kandaskalovoleg.github.io/js-ninjas_tt/#/))
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
